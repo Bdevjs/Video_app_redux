@@ -12,9 +12,10 @@ const initialState = {
 
 //Step 2 : asyc thunk create [for data fatch from database by API]
 
-export const fatchVideo = createAsyncThunk("videos/fetchVideos", async() => {
+export const fatchVideos = createAsyncThunk("videos/fetchVideos", async() => {
 
     const videos = await getVideos();
+    console.log(videos)
     return videos;
 });
 
@@ -25,19 +26,19 @@ const videoSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder
-            .addCase(fatchVideo.pending, (state) => {
+            .addCase(fatchVideos.pending, (state) => {
 
                 state.isError = false;
                 state.isLoading = true;
                 
             })
 
-            .addCase(fatchVideo.fulfilled, (state, action)=>{
+            .addCase(fatchVideos.fulfilled, (state, action)=>{
                 
                 state.isLoading = false;
                 state.videos = action.payload;
             })
-            .addCase(fatchVideo.rejected,(state,action) => {
+            .addCase(fatchVideos.rejected,(state,action) => {
 
                 state.isLoading = false,
                 state.videos = [],
