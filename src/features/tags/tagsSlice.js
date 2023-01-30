@@ -12,11 +12,12 @@ const initialState = {
 //async thunk
 export const fetchTags = createAsyncThunk("tags/fetchTags", async () => {
     const tags = await getTags();
+    console.log("thunk",tags)
     return tags;
 });
 
 const tagsSlice = createSlice({
-    name:tags,
+    name:"tags",
     initialState,
     extraReducers:(builder) => {
         builder
