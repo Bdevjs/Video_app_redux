@@ -15,7 +15,7 @@ const initialState = {
 export const fatchVideos = createAsyncThunk("videos/fetchVideos", async() => {
 
     const videos = await getVideos();
-    console.log(videos)
+    
     return videos;
 });
 
